@@ -19,7 +19,7 @@
         <ActivityIndicator Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Start" WidthRequest="32" HeightRequest="32" IsRunning="True" IsVisible="{Binding IsWorking}" />
 
         <!-- a normal list view -->
-        <ListView x:Name="test" Grid.Row="1" Grid.ColumnSpan="2" CachingStrategy="RecycleElement" ItemsSource="{Binding Items}">
+        <ListView Grid.Row="1" Grid.ColumnSpan="2" CachingStrategy="RecycleElement" ItemsSource="{Binding Items}">
 
             <!-- the behavior that will enable infinite scrolling -->
             <ListView.Behaviors>
