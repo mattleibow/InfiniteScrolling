@@ -6,6 +6,7 @@ before_build:
   - nuget restore
 build:
   verbosity: minimal
+  project: InfiniteScrolling.sln
 
 nuget:
   disable_publish_on_pr: true
