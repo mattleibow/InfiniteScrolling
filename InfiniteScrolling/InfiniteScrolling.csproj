@@ -2,6 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>Copyright © Matthew Leibowitz</Copyright>
+    <PackageId>InfiniteScrolling</PackageId>
+    <PackageProjectUrl>https://github.com/mattleibow/InfiniteScrolling</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/mattleibow/InfiniteScrolling/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/mattleibow/InfiniteScrolling</RepositoryUrl>
+    <Description>A small library to quickly and easily add infinite/endless scrolling support to any Xamarin.Forms ListView.</Description>
+    <PackageTags>Xamarin.Forms,ListView,infinite,endless,incremental,scroll,scrolling,Xamarin,Windows,UWP,Android,iOS</PackageTags>
+    <Authors>Matthew Leibowitz</Authors>
+    <Company>Matthew Leibowitz</Company>
   </PropertyGroup>
 
   <ItemGroup>

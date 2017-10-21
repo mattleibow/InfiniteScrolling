@@ -1,0 +1,14 @@
+version: '{build}'
+image: Visual Studio 2017
+configuration: Release
+
+before_build:
+  - nuget restore
+build:
+  verbosity: minimal
+
+nuget:
+  disable_publish_on_pr: true
+artifacts:
+- path: InfiniteScrolling\bin\$(CONFIGURATION)\
+- path: InfiniteScrolling\bin\$(CONFIGURATION)\*.nupkg
