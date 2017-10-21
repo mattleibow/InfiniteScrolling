@@ -1,4 +1,6 @@
-# InfiniteScrolling
+# Infinite Scrolling
+
+[![Build status](https://ci.appveyor.com/api/projects/status/1vnc3u270h71sbyc/branch/master?svg=true)](https://ci.appveyor.com/project/mattleibow/infinitescrolling/branch/master)  [![NuGet](https://img.shields.io/nuget/dt/InfiniteScrolling.svg)](https://www.nuget.org/packages/InfiniteScrolling)  [![NuGet Pre Release](https://img.shields.io/nuget/vpre/InfiniteScrolling.svg)](https://www.nuget.org/packages/InfiniteScrolling)
 
 A small library to quickly and easily add infinite/endless scrolling support to any Xamarin.Forms ListView.
 
@@ -65,8 +67,8 @@ public class InfiniteDataCollection : ObservableCollection<DataItem>, IInfiniteS
         }
 
         // TODO: instead of adding each item individually, we could make use of
-        //       the RangedObservableCollection from the NuGet:
-        //       https://www.nuget.org/packages/RangedObservableCollection
+        //       the InfiniteScrolling from the NuGet:
+        //       https://www.nuget.org/packages/InfiniteScrolling
         //       this would become:
         //
         //           var items = await dataSource.GetMoreItemsAsync();
