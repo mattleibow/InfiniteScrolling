@@ -7,32 +7,52 @@ namespace InfiniteScrolling
 	public class InfiniteScrollBehavior : Behavior<ListView>
 	{
 		public static readonly BindableProperty IsLoadingMoreProperty =
-			BindableProperty.Create(nameof(IsLoadingMore), typeof(bool), typeof(InfiniteScrollBehavior), default(bool), BindingMode.OneWayToSource);
+			BindableProperty.Create(
+				nameof(IsLoadingMore),
+				typeof(bool),
+				typeof(InfiniteScrollBehavior),
+				default(bool),
+				BindingMode.OneWayToSource);
+
+		private static readonly BindableProperty ItemsSourceProperty =
+			BindableProperty.Create(
+				nameof(ItemsSource),
+				typeof(IEnumerable),
+				typeof(InfiniteScrollBehavior),
+				default(IEnumerable),
+				BindingMode.OneWay,
+				propertyChanged: OnItemsSourceChanged);
+
+		private bool isLoadingMoreFromScroll;
+		private bool isLoadingMoreFromLoader;
+		private ListView associatedListView;
 
 		public bool IsLoadingMore
 		{
-			get { return (bool)GetValue(IsLoadingMoreProperty); }
-			protected set { SetValue(IsLoadingMoreProperty, value); }
+			get => (bool)GetValue(IsLoadingMoreProperty);
+			private set => SetValue(IsLoadingMoreProperty, value);
 		}
 
-		protected ListView AssociatedListView { get; private set; }
+		private IEnumerable ItemsSource => (IEnumerable)GetValue(IsLoadingMoreProperty);
 
 		protected override void OnAttachedTo(ListView bindable)
 		{
 			base.OnAttachedTo(bindable);
 
-			AssociatedListView = bindable;
+			associatedListView = bindable;
+
+			SetBinding(ItemsSourceProperty, new Binding(ListView.ItemsSourceProperty.PropertyName, source: associatedListView));
 
 			bindable.BindingContextChanged += OnListViewBindingContextChanged;
 			bindable.ItemAppearing += OnListViewItemAppearing;
 
-			BindingContext = AssociatedListView.BindingContext;
-
-			OnListViewLoaded();
+			BindingContext = associatedListView.BindingContext;
 		}
 
 		protected override void OnDetachingFrom(ListView bindable)
 		{
+			RemoveBinding(ItemsSourceProperty);
+
 			bindable.BindingContextChanged -= OnListViewBindingContextChanged;
 			bindable.ItemAppearing -= OnListViewItemAppearing;
 
@@ -41,9 +61,7 @@ namespace InfiniteScrolling
 
 		private void OnListViewBindingContextChanged(object sender, EventArgs e)
 		{
-			BindingContext = AssociatedListView.BindingContext;
-
-			OnListViewLoaded();
+			BindingContext = associatedListView.BindingContext;
 		}
 
 		private async void OnListViewItemAppearing(object sender, ItemVisibilityEventArgs e)
@@ -51,49 +69,54 @@ namespace InfiniteScrolling
 			if (IsLoadingMore)
 				return;
 
-			if (AssociatedListView.ItemsSource is IInfiniteScrollLoader loader)
+			if (associatedListView.ItemsSource is IInfiniteScrollLoader loader)
 			{
 				if (loader.CanLoadMore && ShouldLoadMore(e.Item))
 				{
-					IsLoadingMore = true;
+					UpdateIsLoadingMore(true, null);
 					await loader.LoadMoreAsync();
-					IsLoadingMore = false;
-				}
-			}
-		}
-
-		private async void OnListViewLoaded()
-		{
-			if (IsLoadingMore)
-				return;
-
-			if (AssociatedListView.ItemsSource is IInfiniteScrollLoader loader)
-			{
-				if (loader.CanLoadMore && ShouldLoadMore())
-				{
-					IsLoadingMore = true;
-					await loader.LoadMoreAsync();
-					IsLoadingMore = false;
+					UpdateIsLoadingMore(false, null);
 				}
 			}
 		}
 
 		private bool ShouldLoadMore(object item)
 		{
-			if (AssociatedListView.ItemsSource is IInfiniteScrollDetector detector)
+			if (associatedListView.ItemsSource is IInfiniteScrollDetector detector)
 				return detector.ShouldLoadMore(item);
-			if (AssociatedListView.ItemsSource is IList list)
-				return list[list.Count - 1] == item;
+			if (associatedListView.ItemsSource is IList list)
+				return list.Count == 0 || list[list.Count - 1] == item;
 			return false;
 		}
 
-		private bool ShouldLoadMore()
+		private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
 		{
-			if (AssociatedListView.ItemsSource is IInfiniteScrollDetector detector)
-				return detector.ShouldLoadMore();
-			if (AssociatedListView.ItemsSource is IList list)
-				return list.Count == 0;
-			return false;
+			if (bindable is InfiniteScrollBehavior behavior)
+			{
+				if (oldValue is IInfiniteScrollLoading oldLoading)
+				{
+					oldLoading.LoadingMore -= behavior.OnLoadingMore;
+					behavior.UpdateIsLoadingMore(null, false);
+				}
+				if (newValue is IInfiniteScrollLoading newLoading)
+				{
+					newLoading.LoadingMore += behavior.OnLoadingMore;
+					behavior.UpdateIsLoadingMore(null, newLoading.IsLoadingMore);
+				}
+			}
+		}
+
+		private void OnLoadingMore(object sender, LoadingMoreEventArgs e)
+		{
+			UpdateIsLoadingMore(null, e.IsLoadingMore);
+		}
+
+		private void UpdateIsLoadingMore(bool? fromScroll, bool? fromLoader)
+		{
+			isLoadingMoreFromScroll = fromScroll ?? isLoadingMoreFromScroll;
+			isLoadingMoreFromLoader = fromLoader ?? isLoadingMoreFromLoader;
+
+			IsLoadingMore = isLoadingMoreFromScroll || isLoadingMoreFromLoader;
 		}
 	}
 }
