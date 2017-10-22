@@ -67,8 +67,8 @@ public class InfiniteDataCollection : ObservableCollection<DataItem>, IInfiniteS
         }
 
         // TODO: instead of adding each item individually, we could make use of
-        //       the InfiniteScrolling from the NuGet:
-        //       https://www.nuget.org/packages/InfiniteScrolling
+        //       the RangedObservableCollection from the NuGet:
+        //       https://github.com/mattleibow/RangedObservableCollection
         //       this would become:
         //
         //           var items = await dataSource.GetMoreItemsAsync();
