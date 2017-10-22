@@ -2,11 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:scroll="clr-namespace:InfiniteScrolling;assembly=InfiniteScrolling"
-             x:Class="InfiniteScrollingApp.MainPage">
+             x:Class="InfiniteScrollingApp.MainPage"
+             Title="Infinite Scroll">
 
     <Grid Padding="12" RowSpacing="6" ColumnSpacing="6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -16,10 +18,12 @@
 
         <Label Text="Scroll to the bottom of the list to load more." />
 
-        <ActivityIndicator Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Start" WidthRequest="32" HeightRequest="32" IsRunning="True" IsVisible="{Binding IsWorking}" />
+        <ActivityIndicator Grid.Column="1" WidthRequest="32" HeightRequest="32" IsRunning="True" IsVisible="{Binding IsWorking}" />
+
+        <Button Grid.Column="2" Text="Reload" Command="{Binding RefreshCommand}" />
 
         <!-- a normal list view -->
-        <ListView Grid.Row="1" Grid.ColumnSpan="2" CachingStrategy="RecycleElement" ItemsSource="{Binding Items}">
+        <ListView Grid.Row="1" Grid.ColumnSpan="3" CachingStrategy="RecycleElement" ItemsSource="{Binding Items}">
 
             <!-- the behavior that will enable infinite scrolling -->
             <ListView.Behaviors>
