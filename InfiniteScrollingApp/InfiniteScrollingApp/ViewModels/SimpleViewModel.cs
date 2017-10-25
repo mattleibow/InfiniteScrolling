@@ -1,19 +1,18 @@
-﻿using System.Linq;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 
 using InfiniteScrolling;
 
 namespace InfiniteScrollingApp
 {
-	public class MainViewModel : BindableObject
+	public class SimpleViewModel : BindableObject
 	{
 		private const int PageSize = 20;
 
 		public static readonly BindableProperty IsWorkingProperty =
-			BindableProperty.Create(nameof(IsWorking), typeof(bool), typeof(MainViewModel), default(bool));
+			BindableProperty.Create(nameof(IsWorking), typeof(bool), typeof(SimpleViewModel), default(bool));
 
-		public MainViewModel()
+		public SimpleViewModel()
 		{
 			var dataSource = new FakeDataSource();
 
@@ -24,7 +23,7 @@ namespace InfiniteScrollingApp
 					// load the next page
 					var page = Items.Count / PageSize;
 					var items = await dataSource.GetItemsAsync(page + 1, PageSize);
-					return items.Select(item => new DataItem(item));
+					return items;
 				}
 			};
 
