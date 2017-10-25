@@ -85,7 +85,15 @@ namespace InfiniteScrolling
 			if (associatedListView.ItemsSource is IInfiniteScrollDetector detector)
 				return detector.ShouldLoadMore(item);
 			if (associatedListView.ItemsSource is IList list)
-				return list.Count == 0 || list[list.Count - 1] == item;
+			{
+				if (list.Count == 0)
+					return true;
+				var lastItem = list[list.Count - 1];
+				if (associatedListView.IsGroupingEnabled && lastItem is IList group)
+					return group.Count == 0 || group[group.Count - 1] == item;
+				else
+					return lastItem == item;
+			}
 			return false;
 		}
 
