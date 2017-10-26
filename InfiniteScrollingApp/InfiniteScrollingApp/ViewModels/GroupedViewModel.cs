@@ -38,6 +38,13 @@ namespace InfiniteScrollingApp
 							// this is an existing group, so add the items to that
 							foreach (var item in group)
 								inList.Add(item);
+
+							// TODO: instead of adding each item individually, we could make use of
+							//       the RangedObservableCollection from the NuGet:
+							//       https://github.com/mattleibow/RangedObservableCollection
+							//       this would become:
+							//
+							//           inList.AddRange(group);
 						}
 						else
 						{
