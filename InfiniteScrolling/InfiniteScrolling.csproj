@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Xamarin.Forms.Extended.InfiniteScrolling</RootNamespace>
+    <RootNamespace>Xamarin.Forms.Extended</RootNamespace>
     <AssemblyName>Xamarin.Forms.Extended.InfiniteScrolling</AssemblyName>
     <TargetFramework>netstandard1.0</TargetFramework>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>

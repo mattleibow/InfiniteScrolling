@@ -2,7 +2,7 @@
 using System.Collections;
 using Xamarin.Forms;
 
-namespace Xamarin.Forms.Extended.InfiniteScrolling
+namespace Xamarin.Forms.Extended
 {
 	public class InfiniteScrollBehavior : Behavior<ListView>
 	{

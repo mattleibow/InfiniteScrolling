@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended.InfiniteScrolling;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              x:Class="InfiniteScrollingApp.SimplePage">
 
     <Grid Padding="12" RowSpacing="6" ColumnSpacing="6">
