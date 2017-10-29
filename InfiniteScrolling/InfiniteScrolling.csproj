@@ -5,7 +5,7 @@
     <AssemblyName>Xamarin.Forms.Extended.InfiniteScrolling</AssemblyName>
     <TargetFramework>netstandard1.0</TargetFramework>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <Version>1.0.0-preview</Version>
+    <Version>1.0.0-preview2</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
