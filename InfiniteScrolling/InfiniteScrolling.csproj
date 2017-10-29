@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <RootNamespace>Xamarin.Forms.Extended.InfiniteScrolling</RootNamespace>
+    <AssemblyName>Xamarin.Forms.Extended.InfiniteScrolling</AssemblyName>
     <TargetFramework>netstandard1.0</TargetFramework>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <Version>1.0.0-preview</Version>
@@ -8,7 +10,7 @@
     <FileVersion>1.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>Copyright © Matthew Leibowitz</Copyright>
-    <PackageId>InfiniteScrolling</PackageId>
+    <PackageId>Xamarin.Forms.Extended.InfiniteScrolling</PackageId>
     <PackageProjectUrl>https://github.com/mattleibow/InfiniteScrolling</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/mattleibow/InfiniteScrolling/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/mattleibow/InfiniteScrolling</RepositoryUrl>

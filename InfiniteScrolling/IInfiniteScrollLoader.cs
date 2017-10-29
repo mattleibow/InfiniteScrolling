@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace InfiniteScrolling
+namespace Xamarin.Forms.Extended.InfiniteScrolling
 {
 	public interface IInfiniteScrollLoader
 	{

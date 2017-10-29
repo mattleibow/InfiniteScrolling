@@ -1,6 +1,6 @@
 # Infinite Scrolling
 
-[![Build status](https://ci.appveyor.com/api/projects/status/1vnc3u270h71sbyc/branch/master?svg=true)](https://ci.appveyor.com/project/mattleibow/infinitescrolling/branch/master)  [![NuGet](https://img.shields.io/nuget/dt/InfiniteScrolling.svg)](https://www.nuget.org/packages/InfiniteScrolling)  [![NuGet Pre Release](https://img.shields.io/nuget/vpre/InfiniteScrolling.svg)](https://www.nuget.org/packages/InfiniteScrolling)
+[![Build status](https://ci.appveyor.com/api/projects/status/1vnc3u270h71sbyc/branch/master?svg=true)](https://ci.appveyor.com/project/mattleibow/infinitescrolling/branch/master)  [![NuGet](https://img.shields.io/nuget/dt/Xamarin.Forms.Extended.InfiniteScrolling.svg)](https://www.nuget.org/packages/Xamarin.Forms.Extended.InfiniteScrolling)  [![NuGet Pre Release](https://img.shields.io/nuget/vpre/Xamarin.Forms.Extended.InfiniteScrolling.svg)](https://www.nuget.org/packages/Xamarin.Forms.Extended.InfiniteScrolling)
 
 A small library to quickly and easily add infinite/endless scrolling support to any Xamarin.Forms ListView.
 
@@ -10,7 +10,7 @@ Adding infinite scrolling support to a `ListView` is done in two steps. First we
 the `ListView`'s behaviors:
 
 ```xml
-<!-- xmlns:scroll="clr-namespace:InfiniteScrolling;assembly=InfiniteScrolling" -->
+<!-- xmlns:scroll="clr-namespace:Xamarin.Forms.Extended.InfiniteScrolling;assembly=Xamarin.Forms.Extended.InfiniteScrolling" -->
 
 <!-- a normal list view -->
 <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding Items}">
@@ -29,7 +29,7 @@ And then, we need to make use of the `InfiniteScrollCollection<T>` as our collec
 `ObservableCollection<T>` or `List<T>`):
 
 ```csharp
-using InfiniteScrolling;
+using Xamarin.Forms.Extended.InfiniteScrolling;
 
 public class MainViewModel : BaseViewModel
 {

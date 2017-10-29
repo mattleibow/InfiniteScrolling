@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-using InfiniteScrolling;
+using Xamarin.Forms.Extended.InfiniteScrolling;
 
 namespace InfiniteScrollingApp
 {

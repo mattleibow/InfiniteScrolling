@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace InfiniteScrolling
+namespace Xamarin.Forms.Extended.InfiniteScrolling
 {
 	public class InfiniteScrollCollection<T> : ObservableCollection<T>, IInfiniteScrollLoader, IInfiniteScrollLoading
 	{
