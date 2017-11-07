@@ -33,7 +33,7 @@ namespace Xamarin.Forms.Extended
 			private set => SetValue(IsLoadingMoreProperty, value);
 		}
 
-		private IEnumerable ItemsSource => (IEnumerable)GetValue(IsLoadingMoreProperty);
+		private IEnumerable ItemsSource => (IEnumerable)GetValue(ItemsSourceProperty);
 
 		protected override void OnAttachedTo(ListView bindable)
 		{
