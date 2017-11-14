@@ -10,7 +10,7 @@ Adding infinite scrolling support to a `ListView` is done in two steps. First we
 the `ListView`'s behaviors:
 
 ```xml
-<!-- xmlns:scroll="clr-namespace:Xamarin.Forms.Extended.InfiniteScrolling;assembly=Xamarin.Forms.Extended.InfiniteScrolling" -->
+<!-- xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" -->
 
 <!-- a normal list view -->
 <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding Items}">
